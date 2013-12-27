@@ -8,4 +8,6 @@ version "0.0.1"
 depends "zypper"
 recipe "centerim", "Installs/Configures centerim"
 
-supports "suse"
+supports "suse", ">= 12.3"
+supports "debian", ">= 7.0"
+supports "ubuntu", ">= 12.04"

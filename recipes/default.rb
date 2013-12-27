@@ -17,14 +17,17 @@
 # limitations under the License.
 #
 
-include_recipe "zypper"
+case node["platform_family"]
+when "suse"
+  include_recipe "zypper"
 
-zypper_repository "tboerger" do
-  uri "http://download.opensuse.org/repositories/home:tboerger/openSUSE_12.3/"
-  key "http://download.opensuse.org/repositories/home:tboerger/openSUSE_12.3/repodata/repomd.xml.key"
-  title "Home of Thomas Boerger"
+  zypper_repository node["centerim"]["zypper"]["alias"] do
+    uri node["centerim"]["zypper"]["repo"]
+    key node["centerim"]["zypper"]["key"]
+    title node["centerim"]["zypper"]["title"]
 
-  action :add
+    action :add
+  end
 end
 
 node["centerim"]["packages"].each do |name|
