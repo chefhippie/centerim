@@ -29,7 +29,7 @@ default["centerim"]["packages"] = value_for_platform_family(
   )
 )
 
-default["centerim"]["zypper"]["alias"] = "tboerger"
-default["centerim"]["zypper"]["title"] = "Home of Thomas Boerger"
-default["centerim"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/home:tboerger/openSUSE_#{node["platform_version"] == "12.1" ? "12.3" : node["platform_version"]}/"
+default["centerim"]["zypper"]["alias"] = "server-messaging"
+default["centerim"]["zypper"]["title"] = "Server Messaging"
+default["centerim"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/server:messaging/openSUSE_#{node["platform_version"]}/"
 default["centerim"]["zypper"]["key"] = "#{node["centerim"]["zypper"]["repo"]}repodata/repomd.xml.key"
