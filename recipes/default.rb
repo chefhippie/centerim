@@ -27,6 +27,10 @@ when "suse"
     title node["centerim"]["zypper"]["title"]
 
     action :add
+
+    only_if do
+      node["centerim"]["zypper"]["enabled"]
+    end
   end
 end
 

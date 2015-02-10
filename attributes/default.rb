@@ -21,14 +21,12 @@ default["centerim"]["packages"] = value_for_platform_family(
   "debian" => %w(
     centerim-utf8
   ),
-  "ubuntu" => %w(
-    centerim-utf8
-  ),
   "suse" => %w(
     centerim5
   )
 )
 
+default["centerim"]["zypper"]["enabled"] = true
 default["centerim"]["zypper"]["alias"] = "server-messaging"
 default["centerim"]["zypper"]["title"] = "Server Messaging"
 default["centerim"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/server:messaging/openSUSE_#{node["platform_version"]}/"
