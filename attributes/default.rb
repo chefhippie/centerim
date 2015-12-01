@@ -26,8 +26,22 @@ default["centerim"]["packages"] = value_for_platform_family(
   )
 )
 
-default["centerim"]["zypper"]["enabled"] = true
-default["centerim"]["zypper"]["alias"] = "server-messaging"
-default["centerim"]["zypper"]["title"] = "Server Messaging"
-default["centerim"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/server:messaging/openSUSE_#{node["platform_version"]}/"
-default["centerim"]["zypper"]["key"] = "#{node["centerim"]["zypper"]["repo"]}repodata/repomd.xml.key"
+case node["platform_family"]
+when "suse"
+  repo = case node["platform_version"]
+  when /\A13\.\d+\z/
+    "openSUSE_#{node["platform_version"]}"
+  when /\A42\.\d+\z/
+    "openSUSE_Leap_#{node["platform_version"]}"
+  when /\A\d{8}\z/
+    "openSUSE_Factory"
+  else
+    raise "Unsupported SUSE version"
+  end
+
+  default["centerim"]["zypper"]["enabled"] = true
+  default["centerim"]["zypper"]["alias"] = "server-messaging"
+  default["centerim"]["zypper"]["title"] = "Server Messaging"
+  default["centerim"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/server:messaging/#{repo}/"
+  default["centerim"]["zypper"]["key"] = "#{node["centerim"]["zypper"]["repo"]}repodata/repomd.xml.key"
+end
